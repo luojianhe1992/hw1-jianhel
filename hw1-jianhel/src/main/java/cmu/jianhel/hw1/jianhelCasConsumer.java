@@ -86,14 +86,7 @@ public class jianhelCasConsumer extends CasConsumer_ImplBase {
       e.printStackTrace();
     }
     evaluater.printReport();
+    
   }
-    
-    
-    
-    
-    
-    
-    
-    
-
+        
 }

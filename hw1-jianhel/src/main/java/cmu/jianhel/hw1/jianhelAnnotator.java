@@ -33,7 +33,7 @@ public class jianhelAnnotator extends JCasAnnotator_ImplBase {
     int end = 0;
     
     //initialize the file
-    File modelFile = new File("./src/main/resources/modelFromLingpipe/ne-en-bio-genetag.HmmChunker");
+    File modelFile = new File("./home/jianhe/git/hw1-jianhel/hw1-jianhel/modelFromLingpipe/ne-en-bio-genetag.HmmChunker");
     
     //initialize the chunker as null
     Chunker chunker = null;
@@ -60,7 +60,7 @@ public class jianhelAnnotator extends JCasAnnotator_ImplBase {
     while ( matcher.find()){
       end = matcher.start();
       String line = text.substring(begin , end);
-      String[] fields = line.split(" ",end);
+      String[] fields = line.split(" ",2);
       Chunking chunking = chunker.chunk(fields[1]);
       Iterator<Chunk> citer = chunking.chunkSet().iterator();
       
@@ -70,12 +70,17 @@ public class jianhelAnnotator extends JCasAnnotator_ImplBase {
         Chunk c = citer.next();
         jianhelTypeSystem j = new jianhelTypeSystem();
         
+        //the sentence position
         j.setFnTypeSystem1(fields[0]);
         
+        //the gene name
         j.setFnTypeSystem4(fields[1].substring(c.start(),c.end()));
         
+        
+        //the start position
         j.setFnTypeSystem2(c.start());
         
+        //the end position
         j.setFnTypeSystem3(c.end());
         
       }
